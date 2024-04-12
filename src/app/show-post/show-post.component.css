@@ -1,0 +1,156 @@
+.post {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.post p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.post time {
+    display: block;
+    margin-bottom: 15px;
+    color: #999;
+}
+
+.button-group {
+    display: flex;
+    
+}
+
+.button-group button,
+.button-group span {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.like-btn,
+.dislike-btn,
+.comment-btn,
+.download-btn,
+.detail-btn,
+.views{
+    background-color: #fff;
+    margin-left: 10px;
+}
+
+.detail-btn{
+    margin-left: 100px;
+}
+.download-btn{
+    margin-right: 20px;
+    margin-left: 200px;
+}
+
+.like-btn .material-icons.liked {
+    color: gray; /* Màu khi đã like */
+}
+.dislike-btn.disliked .material-icons {
+    color: gray; /* Màu khi đã dislike */
+}
+
+.like-btn:hover,
+.dislike-btn:hover,
+.comment-btn:hover,
+.download-btn:hover,
+.detail-btn:hover 
+.views{
+    background-color: #2c3e50;
+}
+/* Căn chỉnh các phần tử con trong button-group theo chiều dọc */
+.button-group span {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn chỉnh các phần tử con theo trục ngang */
+}
+
+.icon-with-count {
+    /* display: flex; */
+    flex-direction: column; /* Hiển thị số lượng dưới icon */
+    align-items: center; /* Căn chỉnh các phần tử vào giữa */
+}
+.comment-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-container input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.comment-container button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #2c3e50;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.comment-container button:hover {
+    background-color: #1a252f;
+}
+
+.comment {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.comment-content {
+    margin-bottom: 5px;
+}
+
+.comment-actions button {
+    margin-right: 10px;
+}
+.comment-input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.post-comment-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.post-comment-btn:hover {
+    background-color: #1a252f;
+}

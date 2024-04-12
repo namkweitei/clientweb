@@ -1,0 +1,153 @@
+<div class="receivable-customer-report">
+    <div class="row no-margin">
+        <div class="box-header">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-header-group-btn">
+                            <button type="button" class="btn-filter" (click)="showFilter()">
+                                <i class="fa fa-filter"></i>
+                                <span class="btn-filter-text">Bộ lọc</span>
+                            </button>
+                            <input type="text" [(ngModel)]="filterGlobal" class="iput-text"
+                                placeholder="Tìm kiếm trong danh sách">
+                            <!-- (input)="myTable.filterGlobal($event.target.value.trim(), 'contains')" -->
+                            <button class="btn-filter" type="button" (click)="exportExcel()"><span
+                                    class="btn-filter-text">Xuất
+                                    file</span></button>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row no-margin" style="background-color: #f2f4f8;">
+        <div *ngIf="isShowFilterTop" class="col-md-12 no-padding">
+            <div class="box-filter">
+
+
+                <div class="row no-margin">
+                    <div class="col-md-12 mt-5">
+                        <span>Đóng Góp theo từng Khoa</span>
+                    </div>
+                    <div class="col-md-12">
+                        <p-multiSelect [options]="postList" [(ngModel)]="this.dongGopTheoTungKhoa"
+                            defaultLabel="Chọn khoa " optionLabel="facultyID" [style]="{'width': '100%'}"
+                            [resetFilterOnHide]="true" selectedItemsLabel="{0} khoa được chọn "></p-multiSelect>
+                    </div>
+                </div>
+
+                <div class="row no-margin">
+                    <div class="col-md-12 mt-5">
+                        <span>Đóng Góp Phổ Biến Nhất</span>
+                    </div>
+                    <div class="col-md-12">
+
+                        <p-dropdown [options]="  listCheckDongGopPhoBienNhat
+                        " [(ngModel)]="dongGopPhoBienNhat" optionLabel="header" [showClear]="true"
+                            placeholder="Chọn thời gian"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="row no-margin">
+                    <div class="col-md-12 mt-5">
+                        <span>Đóng Góp Mới Nhất</span>
+                    </div>
+                    <div class="col-md-12">
+                        <p-dropdown [options]="timeToSearchList" [(ngModel)]="dongGopMoiNhat" optionLabel="header"
+                            [showClear]="true" placeholder="Chọn thời gian"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-margin pb-1">
+                <div class="col-md-12 mt-5" style="text-align: right">
+                    <button (click)="search()" type="button" class="btn-search">
+                        <span class="btn-search-text">Tìm kiếm</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let post of postList" class="post">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content }}</p>
+    <time>{{ post.submissionDate }}</time>
+    <time>{{ post.closureDate }}</time>
+    <div class="button-group">
+        <!-- Nút like -->
+        <div class="icon-with-count">
+            <button id="likeButton" type="button" class="like-btn" (click)="doLike(post.contributionId, true)" [class.liked]="likedPostsMap.get(post.contributionId)">
+                <i class="material-icons" [class.liked]="likedPostsMap.get(post.contributionId)">thumb_up</i> <!-- Thêm icon like -->
+            </button>
+            <span>{{ post.likes }}</span> <!-- Hiển thị số lượng like -->
+        </div>
+        <!-- Nút dislike -->
+        <div class="icon-with-count">
+            <button type="button" class="dislike-btn" (click)="doDislike(post.contributionId, true)" [class.disliked]="dislikedPosts.has(post.contributionId)">
+                <i class="material-icons" [class.disliked]="dislikedPosts.has(post.contributionId)">thumb_down</i> <!-- Thêm icon dislike -->
+            </button>
+            <span>{{ post.dislikes }}</span> <!-- Hiển thị số lượng dislike -->
+        </div>
+
+        <!-- Nút comment -->
+        <div class="icon-with-count">
+            <button type="button" class="comment-btn" (click)="getComt(post.contributionId,post.title)">
+                <i class="material-icons">comment</i> <!-- Thêm icon comment -->
+            </button>
+<!-- Hiển thị số lượng comment -->
+        </div>
+        <!-- Nút views -->
+        <div class="icon-with-count">
+            <button class="views"><i class="material-icons">visibility</i> </button>
+            <span>{{ post.views }}</span> <!-- Hiển thị số lượng views -->
+        </div>
+        <!-- Nút download -->
+        <div class="icon-with-count">
+            <button type="button" class="download-btn"><i class="material-icons">cloud_download</i></button> 
+            <span></span>
+        </div>
+        <!-- Nút detail -->
+        <div class="icon-with-count">
+            <button (click)="fetchPostDetails(post.contributionId)" type="button" class="detail-btn">
+                <i class="material-icons">info</i> <!-- Thêm icon detail -->
+            </button>
+        </div>
+    </div>
+</div> <!-- P-Dialog cho phần comment -->
+<p-dialog header="Comment of {{titleDialog}}" [(visible)]="visible">
+    <div>
+        <!-- Form chỉnh sửa comment -->
+        <div *ngIf="editingCommentId !== null" class="comment-edit-form">
+            <div class="comment-input-wrapper">
+                <input slot="input" type="text" placeholder="Write a comment..." [(ngModel)]="editedCommentContent" class="comment-input" />
+                <button type="button" (click)="saveEditedComment(editingCommentId, editedCommentContent)" class="save-comment-btn">Save</button>
+                <button type="button" (click)="cancelEditComment()" class="cancel-comment-btn">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Hiển thị danh sách comment -->
+        <div *ngFor="let cmt of commentList" class="comment" [hidden]="editingCommentId === cmt.id">
+            <!-- Hiển thị nội dung comment -->
+            <div class="comment-content">{{ cmt.content }}</div>
+            <!-- Các nút tương tác -->
+            <div class="comment-actions">
+                <button type="button" class="like-btn" (click)="doLikeCmt(cmt.id,false)" [hidden]="editingCommentId === cmt.id">
+                    <i class="material-icons">thumb_up</i>  {{cmt.likes}}
+                </button>
+                <button type="button" class="dislike-btn" (click)="doDisLikeCmt(cmt.id,false)" [hidden]="editingCommentId === cmt.id">
+                    <i class="material-icons">thumb_down</i> {{cmt.dislikes}}
+                </button>
+                <button type="button" class="delete-btn" (click)="deleteComment(cmt.id)" [hidden]="editingCommentId === cmt.id">Delete</button>
+                <button type="button" class="edit-btn" (click)="startEditComment(cmt.id, cmt.content)" [hidden]="editingCommentId === cmt.id">Edit</button>
+            </div>
+        </div>
+    </div>
+    <!-- Form comment -->
+    <div class="comment-input-wrapper">
+        <input slot="input" type="text" placeholder="Write a comment..." [(ngModel)]="commentWord" class="comment-input" />
+        <button type="button" (click)="postComt(commentWord)" class="post-comment-btn">Post Comment</button>
+    </div>
+</p-dialog>

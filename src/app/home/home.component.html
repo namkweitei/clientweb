@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Your Website</title>
+</head>
+<body>
+
+<nav class="side-bar">
+    <span class="nav-item active">
+        <span class="icon">
+            <i data-feather="home"></i>
+        </span>
+        <a routerLink="/home">Home</a>
+    </span>
+    <span class="nav-item active">
+        <span class="icon">
+            <i data-feather="user"></i>
+        </span>
+        <a routerLink="/contribution" >Post</a>
+    </span>
+    <span class="nav-item active">
+        <span class="icon">
+            <i data-feather="user"></i>
+        </span>
+        <a routerLink="/dashboard" >Dashboard</a>
+    </span>
+    <!-- Add more navigation items for additional functionality -->
+</nav>
+
+<main class="main-content">
+<app-show-post> </app-show-post>
+    <!-- Your main content goes here -->
+    
+</main>
+</body>
+</html>

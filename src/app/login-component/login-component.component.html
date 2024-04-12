@@ -1,0 +1,34 @@
+
+    <div className="login-page">
+        <div className="login-page-background"></div>
+        <div class="wrapper">
+            <form (ngSubmit)="login()" class="form-signin">
+                <h2 class="form-signin-heading">Sign Into</h2>
+                <div class="form-group">
+                    <input 
+                        name="userName" 
+                        class="form-control" 
+                        type="text" 
+                        placeholder="Email" 
+                        pInputText 
+                        [(ngModel)]="model.Email" 
+                    />
+                </div>
+                <div class="form-group">
+                    <input 
+                        name="pass" 
+                        class="form-control" 
+                        placeholder="Password" 
+                        type="password" 
+                        [(ngModel)]="model.Password" 
+                        required 
+                    />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>  
+                </div>
+                <p>Don't have an account? <a [routerLink]="'/register'">Register</a></p>
+                <p>Users must log in to access the website</p>
+            </form>
+        </div>
+    </div>

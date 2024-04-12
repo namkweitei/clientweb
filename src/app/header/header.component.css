@@ -1,0 +1,103 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.top-bar .logo img {
+    max-height: 60px;
+}
+
+.top-bar .login {
+    margin-left: auto;
+
+}
+
+.top-bar .login a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid #ecf0f1;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.top-bar .login a:hover {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.top-bar .logout button {
+    color: #ecf0f1;
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border: 2px solid #ecf0f1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.top-bar .logout button:hover {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+.top-bar .notification {
+    position: relative;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.top-bar .notification button {
+    color: #ecf0f1;
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border: 2px solid #ecf0f1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.top-bar .notification button:hover {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: calc(100% + 10px); /* Đặt khoảng cách từ phần tử gốc */
+    right: 0;
+    min-width: 500px; /* Đặt chiều rộng tối thiểu cho dropdown */
+    max-height: 200px; /* Đặt chiều cao tối đa cho dropdown */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao tối đa */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    display: block; /* Bắt đầu ẩn dropdown khi chưa được kích hoạt */
+    color: #333; /* Đặt màu chữ */
+}
+
+.notification-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown ul li {
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+    white-space: nowrap; /* Ngăn chặn tràn dòng */
+    overflow: hidden; /* Ẩn nội dung vượt ra khỏi khung */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm cho nội dung bị ẩn */
+
+}
+
+.notification-dropdown ul li:hover {
+    background-color: gray;
+}

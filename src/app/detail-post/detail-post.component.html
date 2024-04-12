@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup" class="post-form">
+    <div *ngIf="post">
+        <p>
+            <label>Title:</label>
+            <input type="text" formControlName="title" [value]="post.title" readonly>
+        </p>
+        <p>
+            <label>Submission Date:</label>
+            <input type="text" formControlName="submissionDate" [value]="post.submissionDate" readonly>
+        </p>
+        <p>
+            <label>Closure Date:</label>
+            <input type="text" formControlName="closureDate" [value]="post.closureDate" readonly>
+        </p>
+        <p>
+            <label>Content:</label>
+            <textarea formControlName="content" [value]="post.content" readonly></textarea>
+        </p>
+        <p>
+            <label>Attachment:</label>
+            <!-- Hiển thị tên file thay vì "Download File" -->
+            <a *ngIf="downloadUrl && attachmentFileName" [href]="downloadUrl" [download]="attachmentFileName">{{ attachmentFileName }}</a>
+        </p>
+        <button (click)="this.visible=true" class="edit-post-button" pButton icon="pi pi-pencil" class="ui-button" style="margin-right: 5px;"></button>
+        <button pButton icon="pi pi-trash" class="delete-post-button" (click)="deletePost()" style="margin-right: 5px;" ></button>
+        
+        <!-- <label>File:</label>
+            <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+            
+                    <p>
+            <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+            <button class= "file-button" (click)="fileInput.click()">Choose File</button>
+            <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+        </p>
+        -->
+    </div>
+    <p-dialog [(visible)]="visible" class="post-dialog">
+        <div *ngIf="post">
+            <p>
+                <label>Title:</label>
+                <input type="text" formControlName="title">
+            </p>
+            <p>
+                <label>Submission Date:</label>
+                <input type="datetime-local" formControlName="submissionDate">
+            </p>
+            <p>
+                <label>Closure Date:</label>
+                <input type="datetime-local" formControlName="closureDate">
+            </p>
+            <p>
+                <label>Content:</label>
+                <textarea type="text" formControlName="content"></textarea>
+            </p>
+            <p>
+                <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+                <button class= "file-button" (click)="fileInput.click()">Choose File</button>
+                <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+            </p>
+            <button type="button" class="save-post-button" (click)="updatePost()">Save</button>
+        </div>
+    </p-dialog>
+</form>

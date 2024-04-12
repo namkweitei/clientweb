@@ -1,0 +1,36 @@
+/* CSS for form */
+.post-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* CSS for input fields */
+input[type="text"],
+textarea,
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button.edit-post-button {
+    background-color: #28a745; /* Màu xanh lá cây */
+}
+
+button.save-post-button {
+    background-color: gray;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+button.delete-post-button {
+    background-color: #dc3545; /* Màu đỏ */
+}
